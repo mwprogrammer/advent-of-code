@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/mwprogrammer/advent-of-code/2024/solutions"
+)
 
 func main() {
-	fmt.Println("Let's get started with advent of code!")
+	
+	similarityScore := solutions.DayOnePartTwo()
+	fmt.Println(similarityScore)
+	
 }
