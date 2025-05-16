@@ -1,31 +1,41 @@
 package one
 
 import (
-	"sort"
+	"log/slog"
+	"strconv"
 
-	"github.com/mwprogrammer/advent-of-code/go/2024/utilities"
+	"github.com/mwprogrammer/advent-of-code/go/2024/utilities/file"
 )
 
+// Part one: Get the distance between each two locations and then return the sum of all distances.
 func PartOne() int {
 
-	listOne, listTwo := utilities.ExtractLists("2024/files/day_one.txt")
+	locations, err := file.ReadColumns("input.txt", 2, " ")
 
-	sort.Ints(listOne)
-	sort.Ints(listTwo)
-
-	distance := []int{}
-
-	for index := range listOne {
-
-		locationOne := listOne[index]
-		locationTwo := listTwo[index]
-
-		if locationOne > locationTwo {
-			distance = append(distance, locationOne-locationTwo)
-		} else {
-			distance = append(distance, locationTwo-locationOne)
-		}
+	if err != nil {
+		slog.Error(err.Error())
+		return 0
 	}
 
-	return utilities.Sum(distance)
+	total_distance := 0
+
+	for i := 0; i < len(locations[0]); i++ {
+
+		locationOne, err := strconv.Atoi(locations[0][i])
+
+		if err != nil {
+			continue
+		}
+
+		locationTwo, err := strconv.Atoi(locations[1][i])
+
+		if err != nil {
+			continue
+		}
+
+		total_distance += locationOne + locationTwo
+
+	}
+
+	return total_distance
 }

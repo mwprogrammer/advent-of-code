@@ -9,7 +9,7 @@ import (
 )
 
 func ExtractLists(path string) ([]int, []int) {
-	
+
 	content, err := os.Open(path)
 
 	if err != nil {
@@ -38,11 +38,11 @@ func ExtractLists(path string) ([]int, []int) {
 
 		listOne = append(listOne, int(numOne))
 		listTwo = append(listTwo, int(numTwo))
-		
+
 	}
 
 	return listOne, listTwo
-	
+
 }
 
 func Sum(list []int) int {
